@@ -63,14 +63,14 @@ public class EmployeeController {
         employeeServiceIpml.updateEmployee(id,employee);
         return employeeServiceIpml.getEmployeeList();
     }
-//
-//    /**
-//     * 删除某个employee
-//     */
-//    @DeleteMapping("{id}")
-//    public ArrayList<Employee> deleteEmployee(@PathVariable int id){
-//        employeeServiceIpml.deleteEmployee(id);
-//        return employeeServiceIpml.getEmployeeList();
-//    }
+
+    /**
+     * 删除某个employee
+     */
+    @DeleteMapping("{id}")
+    public ArrayList<Employee> deleteEmployee(@PathVariable int id){
+        employeeServiceIpml.deleteEmployee(id);
+        return employeeServiceIpml.getEmployeeList();
+    }
 
 }
