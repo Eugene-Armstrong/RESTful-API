@@ -54,15 +54,15 @@ public class EmployeeController {
         employeeServiceIpml.addEmployee(employee);
         return employeeServiceIpml.getEmployeeList();
     }
-//
-//    /**
-//     * 更新某个具体employee
-//     */
-//    @PutMapping("{id}")
-//    public ArrayList<Employee> updateEmployee(@PathVariable int id,@RequestBody Employee employee){
-//        employeeServiceIpml.updateEmployee(id,employee);
-//        return employeeServiceIpml.getEmployeeList();
-//    }
+
+    /**
+     * 更新某个具体employee
+     */
+    @PutMapping("{id}")
+    public ArrayList<Employee> updateEmployee(@PathVariable int id,@RequestBody Employee employee){
+        employeeServiceIpml.updateEmployee(id,employee);
+        return employeeServiceIpml.getEmployeeList();
+    }
 //
 //    /**
 //     * 删除某个employee
