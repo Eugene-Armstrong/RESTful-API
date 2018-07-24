@@ -44,6 +44,9 @@ public class CompanyServiceImpl implements CompanyService {
         return companyList;
     }
 
+    /**
+     * 获取某个具体Company
+     */
     @Override
     public Company queryCompany(String name) {
         try {
@@ -59,6 +62,9 @@ public class CompanyServiceImpl implements CompanyService {
         }
     }
 
+    /**
+     * 分页查询，page等于1，pageSize等于5
+     */
     @Override
     public ArrayList<Company> handlePage(int page, int pageSize) {
         ArrayList<Company> companies = new ArrayList<>();
@@ -71,8 +77,16 @@ public class CompanyServiceImpl implements CompanyService {
         return companies;
     }
 
+    /**
+     * 获取某个具体company下所有employee列表
+     */
     @Override
-    public ArrayList<Company> getAllEmployeesFromACompany() {
+    public ArrayList<Employee> getAllEmployeesFromACompany(String name) {
+        for(Company company:companyList){
+            if(company.getCompanyName().equals(name)){
+                return company.getEmployees();
+            }
+        }
         return null;
     }
 
@@ -90,34 +104,5 @@ public class CompanyServiceImpl implements CompanyService {
     public void deleteCompany(String name) {
 
     }
-
-    /**
-     * 获取某个具体employee
-     */
-
-
-    /**
-     * 分页查询，page等于1，pageSize等于5
-     */
-
-
-    /**
-     * 筛选出所有男性Employee
-     */
-
-
-    /**
-     * 增加一个employee
-     */
-
-
-    /**
-     * 更新某个具体employee
-     */
-
-
-    /**
-     * 删除某个employee
-     */
 
 }

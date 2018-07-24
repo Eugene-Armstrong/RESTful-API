@@ -1,6 +1,7 @@
 package com.oocl.restfulapi.controller;
 
 import com.oocl.restfulapi.pojo.Company;
+import com.oocl.restfulapi.pojo.Employee;
 import com.oocl.restfulapi.service.CompanyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,12 +40,12 @@ public class CompanyController {
     }
 
     /**
-     * 筛选出所有男性companies
+     * 获取某个具体company下所有employee列表
      */
-//    @GetMapping("male")
-//    public ArrayList<companies> getAllMalecompaniess(){
-//        return companiesServiceIpml.getAllMalecompaniess();
-//    }
+    @GetMapping("{name}/employees")
+    public ArrayList<Employee> getAllEmployeesFromACompany(@PathVariable String name){
+        return companiesServiceIpml.getAllEmployeesFromACompany(name);
+    }
 
     /**
      * 增加一个companies

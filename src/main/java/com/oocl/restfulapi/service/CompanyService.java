@@ -1,6 +1,7 @@
 package com.oocl.restfulapi.service;
 
 import com.oocl.restfulapi.pojo.Company;
+import com.oocl.restfulapi.pojo.Employee;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public interface CompanyService {
     ArrayList<Company> handlePage(int page, int pageSize);
 
     //获取某个具体company下所有employee列表
-    ArrayList<Company> getAllEmployeesFromACompany();
+    ArrayList<Employee> getAllEmployeesFromACompany(String name);
 
     //增加一个Company
     void addCompany(Company Company);
