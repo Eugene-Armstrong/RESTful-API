@@ -45,15 +45,15 @@ public class EmployeeController {
     public ArrayList<Employee> getAllMaleEmployees(){
         return employeeServiceIpml.getAllMaleEmployees();
     }
-//
-//    /**
-//     * 增加一个employee
-//     */
-//    @PostMapping("")
-//    public ArrayList<Employee> addEmployee(@RequestBody Employee employee){
-//        employeeServiceIpml.addEmployee(employee);
-//        return employeeServiceIpml.getEmployeeList();
-//    }
+
+    /**
+     * 增加一个employee
+     */
+    @PostMapping("")
+    public ArrayList<Employee> addEmployee(@RequestBody Employee employee){
+        employeeServiceIpml.addEmployee(employee);
+        return employeeServiceIpml.getEmployeeList();
+    }
 //
 //    /**
 //     * 更新某个具体employee
