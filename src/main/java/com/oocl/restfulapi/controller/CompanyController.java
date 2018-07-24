@@ -24,7 +24,7 @@ public class CompanyController {
     }
 
     /**
-     * 获取某个具体companies
+     * 获取某个具体company
      */
     @GetMapping("{name}")
     public Company queryCompany(@PathVariable String name){
