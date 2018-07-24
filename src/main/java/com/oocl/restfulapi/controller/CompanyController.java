@@ -51,19 +51,19 @@ public class CompanyController {
      * 增加一个company
      */
     @PostMapping("")
-    public ArrayList<Company> addcompanies(@RequestBody Company companies){
-        companiesServiceIpml.addCompany(companies);
+    public ArrayList<Company> addCompany(@RequestBody Company company){
+        companiesServiceIpml.addCompany(company);
         return companiesServiceIpml.getCompanyList();
     }
 
     /**
      * 更新某个具体company
      */
-//    @PutMapping("{id}")
-//    public ArrayList<companies> updatecompanies(@PathVariable int id,@RequestBody companies companies){
-//        companiesServiceIpml.updatecompanies(id,companies);
-//        return companiesServiceIpml.getcompaniesList();
-//    }
+    @PutMapping("{name}")
+    public ArrayList<Company> updateCompany(@PathVariable String name){
+        companiesServiceIpml.updateCompany(name);
+        return companiesServiceIpml.getCompanyList();
+    }
 
     /**
      * 删除某个company
