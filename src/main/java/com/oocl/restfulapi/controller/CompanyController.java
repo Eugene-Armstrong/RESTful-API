@@ -68,10 +68,10 @@ public class CompanyController {
     /**
      * 删除某个company
      */
-//    @DeleteMapping("{id}")
-//    public ArrayList<companies> deletecompanies(@PathVariable int id){
-//        companiesServiceIpml.deletecompanies(id);
-//        return companiesServiceIpml.getcompaniesList();
-//    }
+    @DeleteMapping("{name}")
+    public ArrayList<Company> deleteCompany(@PathVariable String name){
+        companiesServiceIpml.deleteCompany(name);
+        return companiesServiceIpml.getCompanyList();
+    }
 
 }

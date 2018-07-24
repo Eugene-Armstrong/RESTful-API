@@ -117,7 +117,12 @@ public class CompanyServiceImpl implements CompanyService {
      */
     @Override
     public void deleteCompany(String name) {
-
+        for(int i=0;i<companyList.size();i++){
+            if(companyList.get(i).getCompanyName().equals(name)){
+                companyList.remove(i);
+                break;
+            }
+        }
     }
 
 }
