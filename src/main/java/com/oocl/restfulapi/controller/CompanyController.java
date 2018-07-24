@@ -48,16 +48,16 @@ public class CompanyController {
     }
 
     /**
-     * 增加一个companies
+     * 增加一个company
      */
-//    @PostMapping("")
-//    public ArrayList<companies> addcompanies(@RequestBody companies companies){
-//        companiesServiceIpml.addcompanies(companies);
-//        return companiesServiceIpml.getcompaniesList();
-//    }
+    @PostMapping("")
+    public ArrayList<Company> addcompanies(@RequestBody Company companies){
+        companiesServiceIpml.addCompany(companies);
+        return companiesServiceIpml.getCompanyList();
+    }
 
     /**
-     * 更新某个具体companies
+     * 更新某个具体company
      */
 //    @PutMapping("{id}")
 //    public ArrayList<companies> updatecompanies(@PathVariable int id,@RequestBody companies companies){
@@ -66,7 +66,7 @@ public class CompanyController {
 //    }
 
     /**
-     * 删除某个companies
+     * 删除某个company
      */
 //    @DeleteMapping("{id}")
 //    public ArrayList<companies> deletecompanies(@PathVariable int id){
