@@ -9,19 +9,31 @@ import java.util.ArrayList;
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
-    ArrayList<Employee> employeesList = new ArrayList<Employee>(){{
+    ArrayList<Employee> employeesList1 = new ArrayList<Employee>(){{
         add(new Employee(0,"小马",22,"male",6000));
         add(new Employee(1,"小董",20,"female",5000));
-        add(new Employee(2,"小王",29,"male",8000));
-        add(new Employee(3,"小刘",19,"male",3000));
-        add(new Employee(4,"小卢",23,"male",7000));
-        add(new Employee(5,"小李",29,"female",2000));
+    }};
+
+    ArrayList<Employee> employeesList2 = new ArrayList<Employee>(){{
+        add(new Employee(0,"小王",29,"male",8000));
+        add(new Employee(1,"小刘",19,"male",3000));
+        add(new Employee(2,"小卢",23,"male",7000));
+        add(new Employee(3,"小李",29,"female",2000));
+    }};
+
+    ArrayList<Employee> employeesList3 = new ArrayList<Employee>(){{
+        add(new Employee(0,"小a",22,"male",6000));
+        add(new Employee(1,"小b",20,"female",5000));
+        add(new Employee(2,"小c",29,"male",8000));
+        add(new Employee(3,"小d",19,"male",3000));
+        add(new Employee(4,"小e",23,"male",7000));
+        add(new Employee(5,"小f",29,"female",2000));
     }};
 
     ArrayList<Company> companyList = new ArrayList<Company>(){{
-        add(new Company("c1",1,employeesList));
-        add(new Company("c2",2,employeesList));
-        add(new Company("c3",3,employeesList));
+        add(new Company("c1",1,employeesList1));
+        add(new Company("c2",2,employeesList2));
+        add(new Company("c3",3,employeesList3));
     }};
 
     /**
@@ -49,7 +61,14 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public ArrayList<Company> handlePage(int page, int pageSize) {
-        return null;
+        ArrayList<Company> companies = new ArrayList<>();
+        int start = (page-1)*pageSize,
+                end = start+pageSize>companyList.size()
+                        ?companyList.size():start+pageSize;
+        for(int i=start;i<end;i++){
+            companies.add(companyList.get(i));
+        }
+        return companies;
     }
 
     @Override

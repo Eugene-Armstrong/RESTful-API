@@ -33,10 +33,10 @@ public class CompanyController {
     /**
      * 分页查询，page等于1，pageSize等于5
      */
-//    @GetMapping("page/{page}/pageSize/{pageSize}")
-//    public ArrayList<companies> handlePage(@PathVariable int page, @PathVariable int pageSize){
-//        return companiesServiceIpml.handlePage(page,pageSize);
-//    }
+    @GetMapping("page/{page}/pageSize/{pageSize}")
+    public ArrayList<Company> handlePage(@PathVariable int page, @PathVariable int pageSize){
+        return companiesServiceIpml.handlePage(page,pageSize);
+    }
 
     /**
      * 筛选出所有男性companies
