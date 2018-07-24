@@ -37,14 +37,14 @@ public class EmployeeController {
     public ArrayList<Employee> handlePage(@PathVariable int page, @PathVariable int pageSize){
         return employeeServiceIpml.handlePage(page,pageSize);
     }
-//
-//    /**
-//     * 筛选出所有男性Employee
-//     */
-//    @GetMapping("male")
-//    public ArrayList<Employee> getAllMaleEmployees(){
-//        return employeeServiceIpml.getAllMaleEmployees();
-//    }
+
+    /**
+     * 筛选出所有男性Employee
+     */
+    @GetMapping("male")
+    public ArrayList<Employee> getAllMaleEmployees(){
+        return employeeServiceIpml.getAllMaleEmployees();
+    }
 //
 //    /**
 //     * 增加一个employee
