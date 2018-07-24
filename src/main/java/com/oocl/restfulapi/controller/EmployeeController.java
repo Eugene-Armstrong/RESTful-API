@@ -22,13 +22,13 @@ public class EmployeeController {
         return employeeServiceIpml.getEmployeeList();
     }
 
-//    /**
-//     * 获取某个具体employee
-//     */
-//    @GetMapping("{id}")
-//    public Employee queryEmployee(@PathVariable int id){
-//        return employeeServiceIpml.queryEmployee(id);
-//    }
+    /**
+     * 获取某个具体employee
+     */
+    @GetMapping("{id}")
+    public Employee queryEmployee(@PathVariable int id){
+        return employeeServiceIpml.queryEmployee(id);
+    }
 //
 //    /**
 //     * 分页查询，page等于1，pageSize等于5
