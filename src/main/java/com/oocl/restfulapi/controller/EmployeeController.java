@@ -29,14 +29,14 @@ public class EmployeeController {
     public Employee queryEmployee(@PathVariable int id){
         return employeeServiceIpml.queryEmployee(id);
     }
-//
-//    /**
-//     * 分页查询，page等于1，pageSize等于5
-//     */
-//    @GetMapping("page/{page}/pageSize/{pageSize}")
-//    public ArrayList<Employee> handlePage(@PathVariable int page, @PathVariable int pageSize){
-//        return employeeServiceIpml.handlePage(page,pageSize);
-//    }
+
+    /**
+     * 分页查询，page等于1，pageSize等于5
+     */
+    @GetMapping("page/{page}/pageSize/{pageSize}")
+    public ArrayList<Employee> handlePage(@PathVariable int page, @PathVariable int pageSize){
+        return employeeServiceIpml.handlePage(page,pageSize);
+    }
 //
 //    /**
 //     * 筛选出所有男性Employee
