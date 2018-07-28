@@ -5,11 +5,12 @@ import com.oocl.restfulapi.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    ArrayList<Employee> employeesList = new ArrayList<Employee>(){{
+    List<Employee> employeesList = new ArrayList<Employee>(){{
         add(new Employee(0,"小马",22,"male",6000));
         add(new Employee(1,"小董",20,"female",5000));
         add(new Employee(2,"小王",29,"male",8000));
@@ -19,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * 获取employee列表
      */
     @Override
-    public ArrayList<Employee> getEmployeeList(){
+    public List<Employee> getEmployeeList(){
         return employeesList;
     }
 
@@ -45,8 +46,8 @@ public class EmployeeServiceImpl implements EmployeeService {
      * 分页查询，page等于1，pageSize等于5
      */
     @Override
-    public ArrayList<Employee> handlePage(int page, int pageSize) {
-        ArrayList<Employee> employees = new ArrayList<>();
+    public List<Employee> handlePage(int page, int pageSize) {
+        List<Employee> employees = new ArrayList<>();
         int start = (page-1)*pageSize,
                 end = start+pageSize>employeesList.size()
                         ?employeesList.size():start+pageSize;
@@ -60,8 +61,8 @@ public class EmployeeServiceImpl implements EmployeeService {
      * 筛选出所有男性Employee
      */
     @Override
-    public ArrayList<Employee> getAllMaleEmployees() {
-        ArrayList<Employee> allMale = new ArrayList<>();
+    public List<Employee> getAllMaleEmployees() {
+        List<Employee> allMale = new ArrayList<>();
         for(Employee employee:employeesList){
             if(employee.getGender().equals("male")){
                 allMale.add(employee);

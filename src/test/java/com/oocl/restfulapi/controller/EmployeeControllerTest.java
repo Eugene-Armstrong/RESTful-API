@@ -1,6 +1,8 @@
 package com.oocl.restfulapi.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oocl.restfulapi.controller.dto.EmployeeDTO;
+import com.oocl.restfulapi.pojo.Employee;
 import com.oocl.restfulapi.serviceImpl.EmployeeServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-//import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -18,8 +20,6 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(EmployeeController.class)
-//@EnableSpringDataWebSupport
+@EnableSpringDataWebSupport
 public class EmployeeControllerTest {
 
     @Autowired
@@ -43,20 +43,26 @@ public class EmployeeControllerTest {
     private ObjectMapper mapper;
 
     @Test
-    public void should_get_all_employees_without_params(){
+    public void should_get_all_employees(){
         //given
-//        CustomerDto customerDto = new CustomerDto(1L, "Jason", "Zhong");
-//        CustomerDto customerDto2 = new CustomerDto(2L, "Jason2", "Zhong2");
-//        List<CustomerDto> customerDtos = Arrays.asList(customerDto, customerDto2);
-//        when(customerService.getCustomerByPage(any())).thenReturn(customerDtos);
-//        //when
-//        ResultActions result = mvc.perform(get("/customers"));
-//        //then
-//        result.andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(2)))
-//                .andExpect(jsonPath("$[0].content.id", is(1)))
-//                .andExpect(jsonPath("$[0].content.firstName", containsString("Jason")))
-//                .andExpect(jsonPath("$[0].content.lastName", is("Zhong")))
-//                .andExpect(jsonPath("$[1].content.id", is(2)));
+        Employee employee1 = new Employee(0, "Jason", 22,"male",5000);
+        Employee employee2 = new Employee(1, "Rose", 20,"female",4000);
+        List<Employee> employees = Arrays.asList(employee1, employee2);
+        //when
+        when(employeeServiceImpl.getEmployeeList()).thenReturn(employees);
+        try {
+            ResultActions resultActions = mockMvc.perform(get("employees"));
+            //then
+            resultActions.andExpect(status().isOk())
+                    .andExpect(jsonPath("$", hasSize(2)))
+                    .andExpect(jsonPath("$[0].content.id", is(0)))
+                    .andExpect(jsonPath("$[0].content.name", containsString("Jason")))
+                    .andExpect(jsonPath("$[0].content.age", is(22)))
+                    .andExpect(jsonPath("$[0].content.gender", is("male")))
+                    .andExpect(jsonPath("$[0].content.salary", is(5000)))
+                    .andExpect(jsonPath("$[1].content.id", is(1)));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
