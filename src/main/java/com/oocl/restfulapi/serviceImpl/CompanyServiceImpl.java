@@ -32,9 +32,9 @@ public class CompanyServiceImpl implements CompanyService {
     }};
 
     ArrayList<Company> companyList = new ArrayList<Company>(){{
-        add(new Company("c1",1,employeesList1));
-        add(new Company("c2",2,employeesList2));
-        add(new Company("c3",3,employeesList3));
+        add(new Company("c1",employeesList1));
+        add(new Company("c2",employeesList2));
+        add(new Company("c3",employeesList3));
     }};
 
     /**
@@ -107,7 +107,6 @@ public class CompanyServiceImpl implements CompanyService {
         for(int i=0;i<companyList.size();i++){
             if(companyList.get(i).getCompanyName().equals(name)){
                 companyList.get(i).setEmployees(employeesList1);
-                companyList.get(i).setEmployeesNumber(employeesList1.size());
                 break;
             }
         }

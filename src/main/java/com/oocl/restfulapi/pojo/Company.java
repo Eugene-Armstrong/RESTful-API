@@ -4,16 +4,12 @@ import java.util.ArrayList;
 
 public class Company {
     private String companyName;
-    private int employeesNumber;
     private ArrayList<Employee> employees;
 
-    public Company(){
+    public Company(){}
 
-    }
-
-    public Company(String companyName, int employeesNumber, ArrayList<Employee> employees){
+    public Company(String companyName, ArrayList<Employee> employees){
         setCompanyName(companyName);
-        setEmployeesNumber(employeesNumber);
         setEmployees(employees);
     }
 
@@ -23,14 +19,6 @@ public class Company {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
-    }
-
-    public int getEmployeesNumber() {
-        return employeesNumber;
-    }
-
-    public void setEmployeesNumber(int employeesNumber) {
-        this.employeesNumber = employeesNumber;
     }
 
     public ArrayList<Employee> getEmployees() {
