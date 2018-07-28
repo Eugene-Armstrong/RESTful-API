@@ -1,7 +1,7 @@
 package com.oocl.restfulapi.controller;
 
 import com.oocl.restfulapi.pojo.Employee;
-import com.oocl.restfulapi.service.EmployeeServiceImpl;
+import com.oocl.restfulapi.serviceImpl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
