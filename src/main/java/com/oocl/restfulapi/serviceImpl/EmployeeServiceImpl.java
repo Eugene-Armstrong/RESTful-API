@@ -13,9 +13,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         add(new Employee(0,"小马",22,"male",6000));
         add(new Employee(1,"小董",20,"female",5000));
         add(new Employee(2,"小王",29,"male",8000));
-        add(new Employee(3,"小刘",19,"male",3000));
-        add(new Employee(4,"小卢",23,"male",7000));
-        add(new Employee(5,"小李",29,"female",2000));
     }};
 
     /**
