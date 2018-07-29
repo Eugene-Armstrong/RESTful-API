@@ -106,16 +106,17 @@ public class EmployeeServiceImpl implements EmployeeService {
      * 删除某个employee
      */
     @Override
-    public void deleteEmployee(int id) {
+    public boolean deleteEmployee(int id) {
         try {
             for(int i=0;i<employeesList.size();i++){
                 if(employeesList.get(i).getId()==id){
                     employeesList.remove(i);
-                    break;
+                    return employeesList.get(i).getId()!=id;
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+        return false;
     }
 }

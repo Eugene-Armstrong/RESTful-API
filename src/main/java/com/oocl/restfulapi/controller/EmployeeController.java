@@ -68,9 +68,8 @@ public class EmployeeController {
      * 删除某个employee
      */
     @DeleteMapping("{id}")
-    public List<Employee> deleteEmployee(@PathVariable int id){
-        employeeServiceIpml.deleteEmployee(id);
-        return employeeServiceIpml.getEmployeeList();
+    public boolean deleteEmployee(@PathVariable int id){
+        return employeeServiceIpml.deleteEmployee(id);
     }
 
 }

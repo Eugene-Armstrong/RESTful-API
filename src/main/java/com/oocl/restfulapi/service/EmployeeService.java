@@ -25,7 +25,7 @@ public interface EmployeeService {
     void updateEmployee(int id,Employee employee);
 
     //删除某个employee
-    void deleteEmployee(int id);
+    boolean deleteEmployee(int id);
 
 
 }
