@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -22,6 +23,8 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -46,9 +49,7 @@ public class CompanyControllerTest {
         //given
         Employee employee1 = new Employee(0, "Jack", 22,"male",5000);
         Employee employee2 = new Employee(1, "Rose", 20,"female",4000);
-
         Employee employee3 = new Employee(0, "LotsOfHomework", 28,"male",8000);
-
         List<Employee> employees = Arrays.asList(employee1,employee2);
         List<Employee> employees1 = Arrays.asList(employee3);
 
@@ -68,5 +69,59 @@ public class CompanyControllerTest {
                 .andExpect(jsonPath("$[1].companyName", containsString("ITA")))
                 .andExpect(jsonPath("$[1].employees[0].name", is("LotsOfHomework")));
     }
-    
+
+    @Test
+    public void should_get_company_by_id() throws Exception{
+        //given
+        String companyName = "OOCL";
+        Employee employee1 = new Employee(0, "Jack", 22,"male",5000);
+        Employee employee2 = new Employee(1, "Rose", 20,"female",4000);
+        List<Employee> employees = Arrays.asList(employee1,employee2);
+        Company company = new Company(companyName, employees);
+        //when
+        when(companyServiceImpl.queryCompany(companyName)).thenReturn(company);
+        ResultActions resultActions = mockMvc.perform(get("/companies/OOCL",companyName));
+        //then
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.companyName", containsString("OOCL")))
+                .andExpect(jsonPath("$.employees[0].name", is("Jack")))
+                .andExpect(jsonPath("$.employees[1].name", is("Rose")));
+    }
+    @Test
+    public void should_get_companies_by_page() throws Exception{
+        //given
+        int page=1,pageSize=5;
+        Employee employee1 = new Employee(0, "a", 21,"male",1000);
+        Employee employee2 = new Employee(1, "b", 22,"male",2000);
+        List<Employee> employees = Arrays.asList(employee1,employee2);
+        Company company = new Company("OOCL", employees);
+        //when
+        when(companyServiceImpl.handlePage(page,pageSize)).thenReturn(Arrays.asList(company));
+        ResultActions resultActions = mockMvc.perform(get("/companies/page/1/pageSize/5",page,pageSize));
+        //then
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].companyName", containsString("OOCL")))
+                .andExpect(jsonPath("$[0].employees[0].name", is("a")))
+                .andExpect(jsonPath("$[0].employees[1].name", is("b")));
+    }
+
+    @Test
+    public void should_add_company_successfully() throws Exception{
+        //given
+        Employee employee1 = new Employee(0, "a", 21,"male",1000);
+        Employee employee2 = new Employee(1, "b", 22,"male",2000);
+        List<Employee> employees = Arrays.asList(employee1,employee2);
+        Company company = new Company("OOCL", employees);
+        companyServiceImpl.addCompany(company);
+        //when
+        when(companyServiceImpl.getCompanyList()).thenReturn(Arrays.asList(company));
+        ResultActions resultActions = mockMvc.perform(post("/companies")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(company)));
+        //then
+        resultActions.andExpect(status().isOk()).andDo(print());
+    }
+
+
 }
