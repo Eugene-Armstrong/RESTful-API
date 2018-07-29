@@ -6,7 +6,7 @@ import com.oocl.restfulapi.serviceImpl.CompanyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/companies")
@@ -19,7 +19,7 @@ public class CompanyController {
      * 获取companies列表
      */
     @GetMapping("")
-    public ArrayList<Company> getCompanyList(){
+    public List<Company> getCompanyList(){
         return companiesServiceIpml.getCompanyList();
     }
 
@@ -35,7 +35,7 @@ public class CompanyController {
      * 分页查询，page等于1，pageSize等于5
      */
     @GetMapping("page/{page}/pageSize/{pageSize}")
-    public ArrayList<Company> handlePage(@PathVariable int page, @PathVariable int pageSize){
+    public List<Company> handlePage(@PathVariable int page, @PathVariable int pageSize){
         return companiesServiceIpml.handlePage(page,pageSize);
     }
 
@@ -43,7 +43,7 @@ public class CompanyController {
      * 获取某个具体company下所有employee列表
      */
     @GetMapping("{name}/employees")
-    public ArrayList<Employee> getAllEmployeesFromACompany(@PathVariable String name){
+    public List<Employee> getAllEmployeesFromACompany(@PathVariable String name){
         return companiesServiceIpml.getAllEmployeesFromACompany(name);
     }
 
@@ -51,7 +51,7 @@ public class CompanyController {
      * 增加一个company
      */
     @PostMapping("")
-    public ArrayList<Company> addCompany(@RequestBody Company company){
+    public List<Company> addCompany(@RequestBody Company company){
         companiesServiceIpml.addCompany(company);
         return companiesServiceIpml.getCompanyList();
     }
@@ -60,7 +60,7 @@ public class CompanyController {
      * 更新某个具体company
      */
     @PutMapping("{name}")
-    public ArrayList<Company> updateCompany(@PathVariable String name){
+    public List<Company> updateCompany(@PathVariable String name){
         companiesServiceIpml.updateCompany(name);
         return companiesServiceIpml.getCompanyList();
     }
@@ -69,7 +69,7 @@ public class CompanyController {
      * 删除某个company
      */
     @DeleteMapping("{name}")
-    public ArrayList<Company> deleteCompany(@PathVariable String name){
+    public List<Company> deleteCompany(@PathVariable String name){
         companiesServiceIpml.deleteCompany(name);
         return companiesServiceIpml.getCompanyList();
     }

@@ -1,14 +1,14 @@
 package com.oocl.restfulapi.pojo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Company {
     private String companyName;
-    private ArrayList<Employee> employees;
+    private List<Employee> employees;
 
     public Company(){}
 
-    public Company(String companyName, ArrayList<Employee> employees){
+    public Company(String companyName, List<Employee> employees){
         setCompanyName(companyName);
         setEmployees(employees);
     }
@@ -21,11 +21,11 @@ public class Company {
         this.companyName = companyName;
     }
 
-    public ArrayList<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(ArrayList<Employee> employees) {
+    public void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
 

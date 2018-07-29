@@ -2,13 +2,13 @@ package com.oocl.restfulapi.controller.dto;
 
 import com.oocl.restfulapi.pojo.Company;
 import com.oocl.restfulapi.pojo.Employee;
-import java.util.ArrayList;
+import java.util.List;
 
 public class CompanyDTO {
     private final String name;
-    private final ArrayList<Employee> employees;
+    private final List<Employee> employees;
 
-    public ArrayList<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
