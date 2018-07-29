@@ -108,6 +108,23 @@ public class CompanyControllerTest {
     }
 
     @Test
+    public void should_get_all_employees_from_a_company() throws Exception{
+        //given
+        String companyName = "OOCL";
+        Employee employee1 = new Employee(0, "Jack", 22,"male",5000);
+        Employee employee2 = new Employee(1, "Rose", 20,"female",4000);
+        List<Employee> employees = Arrays.asList(employee1,employee2);
+        Company company = new Company(companyName, employees);
+        //when
+        when(companyServiceImpl.getAllEmployeesFromACompany(companyName)).thenReturn(company.getEmployees());
+        ResultActions resultActions = mockMvc.perform(get("/companies/OOCL/employees",companyName));
+        //then
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.[0].name", is("Jack")))
+                .andExpect(jsonPath("$.[1].name", is("Rose")));
+    }
+
+    @Test
     public void should_add_company_successfully() throws Exception{
         //given
         Employee employee1 = new Employee(0, "a", 21,"male",1000);
