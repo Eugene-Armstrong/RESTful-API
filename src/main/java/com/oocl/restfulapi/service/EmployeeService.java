@@ -19,7 +19,7 @@ public interface EmployeeService {
     List<Employee> getAllMaleEmployees();
 
     //增加一个employee
-    void addEmployee(Employee employee);
+    Employee addEmployee(Employee employee);
 
     //更新某个employee
     boolean updateEmployee(int id,Employee employee);

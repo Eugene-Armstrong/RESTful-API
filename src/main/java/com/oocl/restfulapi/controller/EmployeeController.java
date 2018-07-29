@@ -50,9 +50,8 @@ public class EmployeeController {
      * 增加一个employee
      */
     @PostMapping("")
-    public List<Employee> addEmployee(@RequestBody Employee employee){
-        employeeServiceIpml.addEmployee(employee);
-        return employeeServiceIpml.getEmployeeList();
+    public Employee addEmployee(@RequestBody Employee employee){
+        return employeeServiceIpml.addEmployee(employee);
     }
 
     /**

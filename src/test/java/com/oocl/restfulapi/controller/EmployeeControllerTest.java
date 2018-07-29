@@ -102,23 +102,18 @@ public class EmployeeControllerTest {
                 .andExpect(jsonPath("$[0].salary", is(1000)));
     }
 
-//    @Test
-//    public void should_add_employee_successfully() throws Exception{
-//        //given
-//        Employee employee = new Employee(0, "Jack", 21,"male",5000);
-//        List<Employee> employees = Arrays.asList(employee);
-//        employeeServiceImpl.addEmployee(employee);
-//        //when
-//        when(employeeServiceImpl.getEmployeeList()).thenReturn(employees);
-//        ResultActions resultActions = mockMvc.perform(post("/employees",employee));
-//        resultActions.andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(1)))
-//                .andExpect(jsonPath("$[0].id", is(0)))
-//                .andExpect(jsonPath("$[0].name", containsString("Jack")))
-//                .andExpect(jsonPath("$[0].age", is(21)))
-//                .andExpect(jsonPath("$[0].gender", is("male")))
-//                .andExpect(jsonPath("$[0].salary", is(5000)));
-//    }
+    @Test
+    public void should_add_employee_successfully() throws Exception{
+        //given
+        Employee employee = new Employee(0, "Jack", 21,"male",5000);
+        //when
+        when(employeeServiceImpl.addEmployee(employee)).thenReturn(employee);
+        ResultActions resultActions = mockMvc.perform(post("/employees")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(employee)));
+        //then
+        resultActions.andExpect(status().isOk()).andDo(print());
+    }
 
     @Test
     public void should_delete_employee_by_id() throws Exception{

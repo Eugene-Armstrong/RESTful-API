@@ -75,12 +75,14 @@ public class EmployeeServiceImpl implements EmployeeService {
      * 增加一个employee
      */
     @Override
-    public void addEmployee(Employee employee) {
+    public Employee addEmployee(Employee employee) {
         try {
             employeesList.add(employee);
+            return employee;
         }catch (Exception e){
             e.printStackTrace();
         }
+        return null;
     }
 
     /**
