@@ -22,7 +22,7 @@ public interface CompanyService {
     void addCompany(Company Company);
 
     //更新某个Company
-    void updateCompany(String name);
+    boolean updateCompany(String name);
 
     //删除某个company以及名下所有employees
     boolean deleteCompany(String name);

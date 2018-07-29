@@ -98,13 +98,14 @@ public class CompanyServiceImpl implements CompanyService {
      * 更新某个Company
      */
     @Override
-    public void updateCompany(String name) {
+    public boolean updateCompany(String name) {
         for(int i=0;i<companyList.size();i++){
             if(companyList.get(i).getCompanyName().equals(name)){
                 companyList.get(i).setEmployees(employeesList1);
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     /**

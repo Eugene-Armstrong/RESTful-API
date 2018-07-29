@@ -21,10 +21,10 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -72,7 +72,7 @@ public class CompanyControllerTest {
     }
 
     @Test
-    public void should_get_company_by_id() throws Exception{
+    public void should_get_company_by_name() throws Exception{
         //given
         String companyName = "OOCL";
         Employee employee1 = new Employee(0, "Jack", 22,"male",5000);
@@ -122,6 +122,25 @@ public class CompanyControllerTest {
                 .content(mapper.writeValueAsString(company)));
         //then
         resultActions.andExpect(status().isOk()).andDo(print());
+    }
+
+    @Test
+    public void should_update_companiesList_given_name_and_employees() throws Exception {
+        //given
+        String companyName = "test";
+        Employee employee1 = new Employee(0, "a", 21,"male",1000);
+        Employee employee2 = new Employee(1, "b", 22,"male",2000);
+        List<Employee> employees = Arrays.asList(employee1,employee2);
+        Company company = new Company(companyName, employees);
+        when(companyServiceImpl.updateCompany(companyName)).thenReturn(true);
+        //when
+        ResultActions result = mockMvc.perform
+                (put("/companies/test", company.getCompanyName())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(company))
+                );
+        //then
+        result.andExpect(status().isOk()).andDo(print());
     }
 
     @Test

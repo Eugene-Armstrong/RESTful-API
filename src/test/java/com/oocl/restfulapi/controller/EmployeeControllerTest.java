@@ -116,18 +116,6 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void should_delete_employee_by_id() throws Exception{
-        //given
-        int id = 0;
-        Employee employee = new Employee(id, "Jack", 18,"male",5000);
-        //when
-        when(employeeServiceImpl.deleteEmployee(id)).thenReturn(true);
-        ResultActions resultActions = mockMvc.perform(delete("/employees/0",employee.getId()));
-        //then
-        resultActions.andExpect(status().isOk()).andDo(print());
-    }
-
-    @Test
     public void should_update_employeesList_given_id_and_employee() throws Exception {
         //given
         Employee employee = new Employee(0, "Jack", 18,"male",5000);
@@ -140,5 +128,17 @@ public class EmployeeControllerTest {
                 );
         //then
         result.andExpect(status().isOk()).andDo(print());
+    }
+
+    @Test
+    public void should_delete_employee_by_id() throws Exception{
+        //given
+        int id = 0;
+        Employee employee = new Employee(id, "Jack", 18,"male",5000);
+        //when
+        when(employeeServiceImpl.deleteEmployee(id)).thenReturn(true);
+        ResultActions resultActions = mockMvc.perform(delete("/employees/0",employee.getId()));
+        //then
+        resultActions.andExpect(status().isOk()).andDo(print());
     }
 }

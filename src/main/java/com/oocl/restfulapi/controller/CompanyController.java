@@ -60,9 +60,8 @@ public class CompanyController {
      * 更新某个具体company
      */
     @PutMapping("{name}")
-    public List<Company> updateCompany(@PathVariable String name){
-        companiesServiceIpml.updateCompany(name);
-        return companiesServiceIpml.getCompanyList();
+    public boolean updateCompany(@PathVariable String name){
+        return companiesServiceIpml.updateCompany(name);
     }
 
     /**
