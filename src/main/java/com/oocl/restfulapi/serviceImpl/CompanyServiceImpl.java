@@ -111,13 +111,15 @@ public class CompanyServiceImpl implements CompanyService {
      * 删除某个company以及名下所有employees
      */
     @Override
-    public void deleteCompany(String name) {
+    public boolean deleteCompany(String name) {
         for(int i=0;i<companyList.size();i++){
             if(companyList.get(i).getCompanyName().equals(name)){
+                String tmp = companyList.get(i).getCompanyName();
                 companyList.remove(i);
-                break;
+                return tmp!=name;
             }
         }
+        return false;
     }
 
 }

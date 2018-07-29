@@ -22,6 +22,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -123,5 +124,19 @@ public class CompanyControllerTest {
         resultActions.andExpect(status().isOk()).andDo(print());
     }
 
-
+    @Test
+    public void should_delete_company_by_name() throws Exception{
+        //given
+        String companyName = "ali";
+        Employee employee1 = new Employee(0, "a", 21,"male",1000);
+        Employee employee2 = new Employee(1, "b", 22,"male",2000);
+        List<Employee> employees = Arrays.asList(employee1,employee2);
+        Company company = new Company(companyName, employees);
+        //when
+        when(companyServiceImpl.deleteCompany(companyName)).thenReturn(true);
+        ResultActions resultActions = mockMvc
+                .perform(delete("/companies/ali",company.getCompanyName()));
+        //then
+        resultActions.andExpect(status().isOk()).andDo(print());
+    }
 }

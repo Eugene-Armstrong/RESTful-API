@@ -25,7 +25,7 @@ public interface CompanyService {
     void updateCompany(String name);
 
     //删除某个company以及名下所有employees
-    void deleteCompany(String name);
+    boolean deleteCompany(String name);
 
 
 }

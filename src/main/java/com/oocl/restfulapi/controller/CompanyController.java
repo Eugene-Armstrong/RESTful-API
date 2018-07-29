@@ -69,9 +69,8 @@ public class CompanyController {
      * 删除某个company
      */
     @DeleteMapping("{name}")
-    public List<Company> deleteCompany(@PathVariable String name){
-        companiesServiceIpml.deleteCompany(name);
-        return companiesServiceIpml.getCompanyList();
+    public boolean deleteCompany(@PathVariable String name){
+        return companiesServiceIpml.deleteCompany(name);
     }
 
 }
