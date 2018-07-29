@@ -59,9 +59,8 @@ public class EmployeeController {
      * 更新某个具体employee
      */
     @PutMapping("{id}")
-    public List<Employee> updateEmployee(@PathVariable int id,@RequestBody Employee employee){
-        employeeServiceIpml.updateEmployee(id,employee);
-        return employeeServiceIpml.getEmployeeList();
+    public boolean updateEmployee(@PathVariable int id,@RequestBody Employee employee){
+        return employeeServiceIpml.updateEmployee(id,employee);
     }
 
     /**

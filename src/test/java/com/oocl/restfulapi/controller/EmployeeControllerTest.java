@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -19,10 +20,11 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -128,5 +130,20 @@ public class EmployeeControllerTest {
         ResultActions resultActions = mockMvc.perform(delete("/employees/0",employee.getId()));
         //then
         resultActions.andExpect(status().isOk()).andDo(print());
+    }
+
+    @Test
+    public void should_update_employeesList_given_id_and_employee() throws Exception {
+        //given
+        Employee employee = new Employee(0, "Jack", 18,"male",5000);
+        when(employeeServiceImpl.updateEmployee(anyInt(), any(Employee.class))).thenReturn(true);
+        //when
+        ResultActions result = mockMvc.perform
+                (put("/employees/{0}", employee.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(employee))
+                );
+        //then
+        result.andExpect(status().isOk()).andDo(print());
     }
 }

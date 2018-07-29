@@ -87,19 +87,20 @@ public class EmployeeServiceImpl implements EmployeeService {
      * 更新某个具体employee
      */
     @Override
-    public void updateEmployee(int id,Employee employee) {
+    public boolean updateEmployee(int id,Employee employee) {
         try {
             for(int i=0;i<employeesList.size();i++){
                 if(employeesList.get(i).getId()==id){
                     employeesList.get(i).setName(employee.getName());
                     employeesList.get(i).setAge(employee.getAge());
                     employeesList.get(i).setGender(employee.getGender());
-                    break;
+                    return true;
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+        return false;
     }
 
     /**

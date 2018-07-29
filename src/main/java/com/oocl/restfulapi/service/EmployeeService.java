@@ -22,7 +22,7 @@ public interface EmployeeService {
     void addEmployee(Employee employee);
 
     //更新某个employee
-    void updateEmployee(int id,Employee employee);
+    boolean updateEmployee(int id,Employee employee);
 
     //删除某个employee
     boolean deleteEmployee(int id);
